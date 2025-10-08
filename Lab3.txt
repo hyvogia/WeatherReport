@@ -1,0 +1,21 @@
+#PROG1870 
+#Lab 3
+
+Part A:
+>mongoimport --host localhost --db lab3 --collection beerlist --file C:\Hy_mgdb_data\beer.json --jsonArray
+
+Part B:
+>mongo
+1) db.beerlist.find({"ibu":{$gte:60}}, {"_id":0, "name":1, "ibu":1}).sort({"ibu":1})
+
+2) db.beerlist.find({"abv":{$gt:4, $lt:5}},{"_id":0, "name":1, "abv":1, "lastTappedOn":1})
+
+3) db.beerlist.find({$or:[{"flavors":"chocolate"}, {"flavors":"bourbon"}]}, {"_id":0, "name":1, "flavors.$":1})
+
+4) db.beerlist.find({"breweryId":/[zk]{2}[a-zA-Z0-9]{0,10}/}).pretty()
+
+5) db.beerlist.updateOne({"id":7},{$set:{"flavors":["caramel","chocolate","banana"]}})
+
+6) db.beerlist.update({"breweryName":"North American Brewco"}, {$set:{"isdutyfree":"true"}}, {multi:true})
+
+7) db.beerlist.remove({"activelyBrewed":"false"})
